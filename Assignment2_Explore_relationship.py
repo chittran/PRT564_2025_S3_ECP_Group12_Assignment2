@@ -8,8 +8,8 @@ from sklearn import metrics
 df = pd.read_csv("Avian_Disease_Dataset.csv", encoding='ISO-8859-1')
 
 # Separate explanatory variables (x) from the response variable (y)
-x = df.iloc[:,3:-1].values
-y = df.iloc[:,-1].values
+Factors = df.iloc[:,3:-1].values
+MarekCase = df.iloc[:,-1].values
 #print(x,y)
 
 Clinical_Sign = df.columns[3:-1].values

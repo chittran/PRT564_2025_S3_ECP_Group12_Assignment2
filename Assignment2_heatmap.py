@@ -1,11 +1,11 @@
 import pandas as pd
 import seaborn as sns
 import pathlib
-from Assignment2_Explore_relationship import df, Clinical_Sign
+from Assignment2_Explore_relationship import Factors
 
 # Plot the matrix as a heatmap to check remove multicollinearity
 pathlib.Path('output/correlation/').mkdir(parents=True, exist_ok=True) 
-corr = df[Clinical_Sign].corr()
+corr = Factors.corr()
 ax = sns.heatmap(
     corr,
     vmin=-1, vmax=1, center=0,
