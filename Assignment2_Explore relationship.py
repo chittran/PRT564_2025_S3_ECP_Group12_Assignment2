@@ -1,10 +1,7 @@
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
-
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
-from sklearn.decomposition import PCA
 from sklearn import metrics
 
 # Read dataset into a DataFrame
@@ -16,7 +13,7 @@ y = df.iloc[:,-1].values
 #print(x,y)
 
 Clinical_Sign = df.columns[3:-1].values
-#print(Clinical_Sign)
+print(Clinical_Sign)
 
 def linear_regression_analysis(sign):
     target_col = 'No of Marek Disease Diagnoses'
@@ -75,3 +72,4 @@ def linear_regression_analysis(sign):
 # Loop through groups and perform regression analysis
 for sign in Clinical_Sign:
     linear_regression_analysis(sign)
+
