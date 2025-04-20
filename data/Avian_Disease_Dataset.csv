@@ -1,4 +1,4 @@
-Year,Region,Season,Found dead,Respiratory,Wasting,Abnormal faeces or other GIT,Musculoskeletal &/or Lame,Non-specific,Nervous,Recumbent,Egg drop/total,Skin,Other/Unknown,Mean temperature,rainfall,Rain days >= 1mm,Sunshine,Days of air frost,No of Marek Disease Diagnoses
+Year,Region,Season,Found dead,Respiratory,Wasting,Abnormal faeces or other GIT,Musculoskeletal &/or Lame,Non-specific,Nervous,Recumbent,Egg drop/total,Skin,Other/Unknown,Mean temperature,rainfall,Rain days gt 1mm,Sunshine,Days of air frost,No of Marek Disease Diagnoses
 2012,East Midlands,Winter,0,0,0,0,1,0,0,0,0,0,0,4.22,185.3,33.4,189.2,28.4,1
 2012,South East,Winter,1,0,0,0,0,0,1,0,0,0,0,5.4,161.8,26.9,214.5,28,2
 2012,South West,Winter,0,0,0,0,1,0,0,0,0,0,0,5.76,321,44.2,162,20.2,1
