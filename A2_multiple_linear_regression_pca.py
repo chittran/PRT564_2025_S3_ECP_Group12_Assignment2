@@ -6,7 +6,11 @@ df_c = df.copy()
 linearRegression(df_c, detail=True)
 
 # PCA without Standardisation
-linearRegression(df_c, use_pca=True, detail=True)
+linearRegression(df_c, use_pca=True, pca_n_components=3, detail=True)
 
 # PCA with Standardisation
-linearRegression(df_c, scalingType=ScalingType.STANDARD, use_pca=True, detail=True)
+linearRegression(df_c, scalingType=ScalingType.STANDARD, use_pca=True, pca_n_components=3, detail=True)
+
+# PCA without Standardisation
+# linearRegression(df_c, use_pca=True, pca_n_components=2, detail=True)
+# linearRegression(df_c, scalingType=ScalingType.STANDARD, use_pca=True, pca_n_components=2, detail=True)
