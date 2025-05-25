@@ -39,13 +39,13 @@ def run_kmeans_with_pca(X, y, k=4, standardize=False, filepath="clustering/kmean
         scaler = StandardScaler()
         X = scaler.fit_transform(X)
 
+    # Fit KMeans
+    kmeans = KMeans(n_clusters=k)
+    clusters = kmeans.fit_predict(X)
+
     # Apply PCA
     pca = PCA(n_components=2)
     X_pca = pca.fit_transform(X)
-
-    # Fit KMeans
-    kmeans = KMeans(n_clusters=k)
-    clusters = kmeans.fit_predict(X_pca)
 
     df = pd.DataFrame(X_pca, columns=["PC1", "PC2"])
     df["predicted"] = clusters
