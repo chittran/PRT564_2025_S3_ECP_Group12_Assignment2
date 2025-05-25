@@ -6,8 +6,7 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 # Read dataset into a DataFrame
 index_columns = ['Year', 'Region', 'Season']
-# df = pd.read_csv("data/Avian_disease_Dataset_NewY.csv", encoding='ISO-8859-1').set_index(index_columns)
-df_o = pd.read_csv("data/Avian_disease_Dataset_NewY1.csv", encoding='ISO-8859-1').set_index(index_columns)
+df_o = pd.read_csv("data/Avian_disease_Dataset.csv", encoding='ISO-8859-1').set_index(index_columns)
 
 df = df_o.replace([np.inf, -np.inf, np.nan], 0)
 # Remove multicollinearity

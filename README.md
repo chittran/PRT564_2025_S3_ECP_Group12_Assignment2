@@ -1,7 +1,7 @@
 ## Charles Darwin University
 ## PRT564 - DATA ANALYTICS AND VISUALISATION
 Semester 1, 2025
- Assignment 2 - Data analysis 
+  Assignment 4 - Data analysis 
 
 ## Content
 In this assignment, we collect data from a given dashboard: https://public.tableau.com/app/profile/siu.apha/viz/AvianDashboard/Overview 
