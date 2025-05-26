@@ -5,8 +5,7 @@ import pandas as pd
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 # Read dataset into a DataFrame
-index_columns = ['Year', 'Region', 'Season']
-df_o = pd.read_csv("data/Avian_disease_Dataset.csv", encoding='ISO-8859-1').set_index(index_columns)
+df_o = pd.read_csv("data/Avian_disease_Dataset.csv", encoding='ISO-8859-1')
 
 df = df_o.replace([np.inf, -np.inf, np.nan], 0)
 
@@ -19,8 +18,14 @@ df["Mareks_Diagnosis_Level"] = pd.cut(
     include_lowest=True
 )
 
-feature_columns = df.drop(columns=[
-    "Percentage of Marek's Disease Diagnoses",
-    'Mareks_Diagnosis_Level'
-]).values
-target_column = df["Mareks_Diagnosis_Level"].values
+categorical_cols = ['Region', 'Season']  # từ index nên cần reset index trước
+numerical_cols = [
+    'Found dead', 'Respiratory', 'Wasting', 'Abnormal faeces or other GIT',
+    'Musculoskeletal &/or Lame', 'Non-specific', 'Nervous', 'Recumbent',
+    'Egg drop/total', 'Skin', 'Other/Unknown',
+    'Mean temperature', 'rainfall', 'Rain days more than 1mm',
+    'Sunshine', 'Days of air frost'
+]
+
+feature_columns = df[numerical_cols + categorical_cols]
+target_column = df["Mareks_Diagnosis_Level"]

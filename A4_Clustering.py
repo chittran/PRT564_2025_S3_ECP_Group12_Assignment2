@@ -1,4 +1,5 @@
 import os
+os.environ["OMP_NUM_THREADS"] = "1"
 
 from A4_datawrangling import *
 from sklearn.decomposition import PCA
@@ -69,7 +70,9 @@ def run_kmeans_with_pca(X, y, k=4, standardize=False, filepath="clustering/kmean
     plt.close()
 
 if __name__ == "__main__":
-    run_elbow_method(feature_columns, standardize=False, filepath="output/clustering/elbow_raw.png")
-    run_elbow_method(feature_columns, standardize=True, filepath="output/clustering/elbow_standardized.png")
-    run_kmeans_with_pca(feature_columns, target_column, k=4, standardize=False, filepath="output/clustering/kmeans_pca_raw.png")
-    run_kmeans_with_pca(feature_columns, target_column, k=4, standardize=True, filepath="output/clustering/kmeans_pca_standardized.png")
+    X = pd.get_dummies(feature_columns, drop_first=True)
+
+    run_elbow_method(X, standardize=False, filepath="output/clustering/elbow_raw.png")
+    run_elbow_method(X, standardize=True, filepath="output/clustering/elbow_standardized.png")
+    run_kmeans_with_pca(X, target_column, k=4, standardize=False, filepath="output/clustering/kmeans_pca_raw.png")
+    run_kmeans_with_pca(X, target_column, k=4, standardize=True, filepath="output/clustering/kmeans_pca_standardized.png")
