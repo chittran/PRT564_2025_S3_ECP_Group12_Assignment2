@@ -25,7 +25,6 @@ def run_elbow_method(X, standardize=False, filepath="clustering/elbow_plot.png")
     plt.title(f"Elbow Method {'(Standardized)' if standardize else '(Raw)'}")
     plt.xlabel('k')
     plt.ylabel('Inertia scores')
-    plt.tight_layout()
 
     output_dir = os.path.dirname(filepath)
     if output_dir:
