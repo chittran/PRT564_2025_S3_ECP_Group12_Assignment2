@@ -135,3 +135,11 @@ if __name__ == "__main__":
     (X, y) = get_dataset(outlier_removal='none')  # 'lof' or 'isolation_forest' or 'none'
     (results, models) = evaluate_all_models(X, y);
     print(results)
+
+    (X, y) = get_dataset(outlier_removal='isolation_forest')  # 'lof' or 'isolation_forest' or 'none'
+    (results, models) = evaluate_all_models(X, y);
+    print(results)
+
+    (X, y) = get_dataset(outlier_removal='lof')  # 'lof' or 'isolation_forest' or 'none'
+    (results, models) = evaluate_all_models(X, y);
+    print(results)

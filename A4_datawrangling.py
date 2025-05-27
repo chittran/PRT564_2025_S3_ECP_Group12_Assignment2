@@ -11,7 +11,7 @@ df = pd.read_csv("data/Avian_disease_Dataset.csv", encoding='ISO-8859-1')
 
 # Generate classification labels based on the percentage of Marek's Disease diagnoses.
 bins = df["Percentage of Marek's Disease Diagnoses"].quantile([0, 0.25, 0.5, 0.75, 1]).values
-labels = ['Very Low', 'Low', 'High', 'Very High']
+labels = ['Very Low', 'Low', 'Moderate', 'High']
 df["Mareks_Diagnosis_Level"] = pd.cut(
     df["Percentage of Marek's Disease Diagnoses"],
     bins=bins, labels=labels,
