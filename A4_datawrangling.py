@@ -1,6 +1,8 @@
 import warnings
 import numpy as np
 import pandas as pd
+from sklearn.ensemble import IsolationForest
+from sklearn.neighbors import LocalOutlierFactor
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 
@@ -37,3 +39,24 @@ numerical_cols = [
 
 feature_columns = df[numerical_cols + categorical_cols]
 target_column = df["Mareks_Diagnosis_Level"]
+
+def get_dataset(outlier_removal='none'):
+    X_num = df[numerical_cols].copy()
+    X_cat = df[categorical_cols].copy()
+    y = target_column.copy()
+
+    if outlier_removal == 'lof':
+        lof = LocalOutlierFactor(n_neighbors=20, contamination=0.05)
+        mask = lof.fit_predict(X_num) != -1
+        X_num = X_num[mask]
+        X_cat = X_cat[mask]
+        y = y[mask].reset_index(drop=True)
+    elif outlier_removal == 'isolation_forest':
+        iso = IsolationForest(contamination=0.05, random_state=42)
+        mask = iso.fit_predict(X_num) != -1
+        X_num = X_num[mask]
+        X_cat = X_cat[mask]
+        y = y[mask].reset_index(drop=True)
+
+    X = pd.concat([X_num.reset_index(drop=True), X_cat.reset_index(drop=True)], axis=1)
+    return X, y.reset_index(drop=True)

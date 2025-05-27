@@ -106,9 +106,6 @@ def evaluate_all_models(X, y, cv=5):
 
         visualize_classifier_pca(name, model, X_test, y_test, filepath=f"output/classifier/{name}.png")
 
-    # visualize_predictions(best_models, X_test, y_test)
-    # visualize_pca_predictions(best_models, X_test, y_test)
-
     return results_df, best_models
 
 def visualize_classifier_pca(model_name, model, X, y, filepath):
@@ -135,5 +132,6 @@ def visualize_classifier_pca(model_name, model, X, y, filepath):
     plt.close()
 
 if __name__ == "__main__":
-    (results, models) = evaluate_all_models(feature_columns, target_column);
+    (X, y) = get_dataset(outlier_removal='none')  # 'lof' or 'isolation_forest' or 'none'
+    (results, models) = evaluate_all_models(X, y);
     print(results)
