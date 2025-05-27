@@ -18,23 +18,24 @@ df["Mareks_Diagnosis_Level"] = pd.cut(
     include_lowest=True
 )
 
-categorical_cols = ['Region', 'Season']  # từ index nên cần reset index trước
-# numerical_cols = [
-#     'Found dead', 'Respiratory', 'Wasting', 'Abnormal faeces or other GIT',
-#     'Musculoskeletal &/or Lame', 'Non-specific', 'Nervous', 'Recumbent',
-#     'Egg drop/total', 'Skin', 'Other/Unknown',
-#     'Mean temperature', 'rainfall', 'Rain days more than 1mm',
-#     'Sunshine', 'Days of air frost'
-# ]
-
+categorical_cols = ['Region', 'Season']
 numerical_cols = [
     'Found dead',
     'Respiratory',
     'Wasting',
+    # 'Abnormal faeces or other GIT',
+    # 'Musculoskeletal &/or Lame',
+    # 'Non-specific',
     'Nervous',
+    # 'Recumbent',
+    # 'Egg drop/total',
+    # 'Skin',
     'Other/Unknown',
     'Mean temperature',
-    'rainfall'
+    'rainfall',
+    # 'Rain days more than 1mm',
+    # 'Sunshine',
+    # 'Days of air frost'
 ]
 
 feature_columns = df[numerical_cols + categorical_cols]
