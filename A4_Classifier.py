@@ -109,21 +109,27 @@ def evaluate_all_models(X, y, cv=5):
     return results_df, best_models
 
 def visualize_classifier_pca(model_name, model, X, y, filepath):
-    label_enc = LabelEncoder()
-    y_encoded = label_enc.fit_transform(y)
-
     X_transformed = model.named_steps['preprocessor'].transform(X)
     y_pred = model.predict(X)
 
-    pca = PCA(n_components=2)
+    label_enc = LabelEncoder()
+    all_labels = np.unique(np.concatenate([y, y_pred]))
+    label_enc.fit(all_labels)
+    y_encoded = label_enc.transform(y)
     y_pred_encoded = label_enc.transform(y_pred)
+
+    pca = PCA(n_components=2)
     X_pca = pca.fit_transform(X_transformed)
 
-    plt.figure(figsize=(16, 8))
-    plt.scatter(X_pca[:, 0], X_pca[:, 1], c=y_pred_encoded, cmap=plt.cm.Set1)
-    plt.title(f"{model_name.upper()}")
-    plt.xlabel("PC1")
-    plt.ylabel("PC2")
+    df = pd.DataFrame(X_pca, columns=["PC1", "PC2"])
+    df["actual"] = y_encoded
+    df["predicted"] = y_pred_encoded
+
+    fig, ax = plt.subplots(1, 2, figsize=(16, 7))
+    ax[0].set_title(f"{model_name.upper()} - Actual", fontsize=14)
+    ax[0].scatter(df['PC1'], df['PC2'], c=df['actual'], cmap=plt.cm.Set1)
+    ax[1].set_title(f"{model_name.upper()} - Predicted", fontsize=14)
+    ax[1].scatter(df['PC1'], df['PC2'], c=df['predicted'], cmap=plt.cm.Set1)
 
     output_dir = os.path.dirname(filepath)
     if output_dir:
@@ -136,10 +142,10 @@ if __name__ == "__main__":
     (results, models) = evaluate_all_models(X, y);
     print(results)
 
-    (X, y) = get_dataset(outlier_removal='isolation_forest')  # 'lof' or 'isolation_forest' or 'none'
-    (results, models) = evaluate_all_models(X, y);
-    print(results)
+    # (X, y) = get_dataset(outlier_removal='isolation_forest')  # 'lof' or 'isolation_forest' or 'none'
+    # (results, models) = evaluate_all_models(X, y);
+    # print(results)
 
-    (X, y) = get_dataset(outlier_removal='lof')  # 'lof' or 'isolation_forest' or 'none'
-    (results, models) = evaluate_all_models(X, y);
-    print(results)
+    # (X, y) = get_dataset(outlier_removal='lof')  # 'lof' or 'isolation_forest' or 'none'
+    # (results, models) = evaluate_all_models(X, y);
+    # print(results)
